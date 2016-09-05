@@ -1,6 +1,7 @@
 # Logstash Delta Filter Documentation
 
 [![Travis Build Status](https://travis-ci.org/tiwilliam/logstash-filter-delta.svg)](https://travis-ci.org/tiwilliam/logstash-filter-delta)
+[![Gem Version](https://badge.fury.io/rb/logstash-filter-delta.svg)](https://badge.fury.io/rb/logstash-filter-delta)
 
 This filter helps you to calculate integer or float delta and tag based on result or write it to a field.
 
