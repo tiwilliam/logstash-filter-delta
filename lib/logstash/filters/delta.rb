@@ -33,8 +33,20 @@ class LogStash::Filters::Delta < LogStash::Filters::Base
   end
 
   private
-  def is_numeric(value)
-    return (value.is_a?(Integer) or value.is_a?(Float))
+  def cast_string_to_numeric(value)
+    begin
+      return Integer(value)
+    rescue ArgumentError
+      return Float(value)
+    end
+  end
+
+  private
+  def ensure_numeric(value)
+    if (value.is_a? Float or value.is_a? Integer)
+      return value
+    end
+    return cast_string_to_numeric(value)
   end
 
   public
@@ -54,14 +66,11 @@ class LogStash::Filters::Delta < LogStash::Filters::Base
         return filter_failed(event, @tag_on_failure)
       end
 
-      to = event.get(to)
-      from = event.get(from)
-
-      if !is_numeric(to) or !is_numeric(from)
+      begin
+        delta = ensure_numeric(event.get(to)) - ensure_numeric(event.get(from))
+      rescue ArgumentError
         return filter_failed(event, @tag_on_failure)
       end
-
-      delta = to - from
 
       if @min and delta < @min
         return filter_failed(event, @tag_on_min_failure)
