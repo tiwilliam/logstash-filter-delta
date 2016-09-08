@@ -25,8 +25,8 @@ delta {
   ]
   min => -10  # -10 seconds
   max => 600  # +10 minutes
-	tag_on_min_failure => ["_event_too_new"]
-	tag_on_max_failure => ["_event_too_old"]
+  tag_on_min_failure => ["_event_too_new"]
+  tag_on_max_failure => ["_event_too_old"]
 }
 ```
 

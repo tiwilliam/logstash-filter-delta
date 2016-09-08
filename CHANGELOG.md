@@ -1,3 +1,6 @@
+## 1.1.1
+- Support Logstash API 1.0 only
+
 ## 1.1.0
  - Cast string input values to integer and float
 
