@@ -38,6 +38,8 @@ class LogStash::Filters::Delta < LogStash::Filters::Base
       return Integer(value)
     rescue ArgumentError
       return Float(value)
+    rescue TypeError
+      raise ArgumentError
     end
   end
 

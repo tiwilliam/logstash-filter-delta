@@ -1,3 +1,6 @@
+## 1.1.2
+- Do not crash when receving fields with null value
+
 ## 1.1.1
 - Support Logstash API 1.0 only
 

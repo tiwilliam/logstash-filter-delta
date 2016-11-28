@@ -27,6 +27,21 @@ describe LogStash::Filters::Delta do
       expect(subject.get("output")).to eq(nil)
       expect(subject.get("tags")).to eq(["_deltafailure"])
     end
+
+    sample("start" => nil, "end" => 100) do
+      expect(subject.get("output")).to eq(nil)
+      expect(subject.get("tags")).to eq(["_deltafailure"])
+    end
+
+    sample("start" => 100, "end" => nil) do
+      expect(subject.get("output")).to eq(nil)
+      expect(subject.get("tags")).to eq(["_deltafailure"])
+    end
+
+    sample("start" => nil, "end" => nil) do
+      expect(subject.get("output")).to eq(nil)
+      expect(subject.get("tags")).to eq(["_deltafailure"])
+    end
   end
 
   describe "Test string casting" do
